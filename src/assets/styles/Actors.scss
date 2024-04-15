@@ -1,0 +1,25 @@
+#actors {
+  padding: 30px;
+  .actors {
+    display: flex;
+    overflow-y: hidden;
+    height: 350px;
+    gap: 20px;
+    &--text {
+      height: 470px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      h2 {
+        font-size: 18px;
+      }
+      h3 {
+        font-size: 15px;
+      }
+    }
+  }
+}

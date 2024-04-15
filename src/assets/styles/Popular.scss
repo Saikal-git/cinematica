@@ -1,0 +1,37 @@
+#popular {
+  padding: 50px 0;
+  .container {
+    .loading {
+      margin-left: 500px;
+    }
+    .popular {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      &--movie {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 70px;
+      }
+      &--pogination {
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        button {
+          font-size: 18px;
+          text-transform: uppercase;
+          padding: 10px 30px;
+          border-radius: 20px;
+          cursor: pointer;
+          background: black;
+          color: white;
+          border: none;
+        }
+      }
+    }
+  }
+}

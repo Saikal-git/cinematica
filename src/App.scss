@@ -1,0 +1,26 @@
+@import "../src/assets/styles/Header.scss";
+@import "../src/assets/styles/Home.scss";
+@import "../src/assets/styles/Popular.scss";
+@import "../src/assets/styles/TopRated.scss";
+@import "../src/assets/styles/MovieCard.scss";
+@import "../src/assets/styles/MovieDetails.scss";
+@import "../src/assets/styles/Actors.scss";
+@import "../src/assets/styles/Videos.scss";
+@import "../src/assets/styles/ActorDetails.scss";
+@import "../src/assets/styles/MovieActor.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+button{
+  cursor: pointer;
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
