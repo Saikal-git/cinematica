@@ -14,6 +14,7 @@ const MovieActor = ({ actorId }) => {
       setActors(res.data.cast);
     });
   };
+
   useEffect(() => {
     getActors(API_KEY);
   }, []);
@@ -22,6 +23,7 @@ const MovieActor = ({ actorId }) => {
   return (
     <div id="actorsMovie">
       <div className="actorsMovie">
+        
         {actors.map((el) => (
           <div className="actorsMovie--img">
            <Link to={`/movieDetails/${el.id}`}>

@@ -9,7 +9,6 @@ import Actors from "../../components/Actors";
 import Videos from "../../components/Videos";
 import fonFoto from "../../assets/img/fonn.jpg";
 
-
 const MovieDetails = () => {
   const [details, setDetails] = useState({});
   const [modal, setModal] = useState(false);
@@ -62,7 +61,11 @@ const MovieDetails = () => {
         <div className="container">
           <div className="movieDetails">
             <img
-              src={poster_path ? `https://media.themoviedb.org/t/p/w440_and_h660_face${poster_path}` : fonFoto}
+              src={
+                poster_path
+                  ? `https://media.themoviedb.org/t/p/w440_and_h660_face${poster_path}`
+                  : fonFoto
+              }
               alt=""
               onClick={() => {
                 setModal(true);
@@ -155,7 +158,6 @@ const MovieDetails = () => {
       </div>
       <Actors actorsId={movieId} />
       <Videos videosId={movieId} />
-      <Videos personId={movieId} />
     </>
   );
 };

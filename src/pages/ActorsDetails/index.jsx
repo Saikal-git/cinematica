@@ -36,7 +36,12 @@ const ActorsDetails = () => {
                 alt=""
                 width={350}
               />
-             { actor.birthday && actor.place_of_birth && actor.place_of_birth && actor.also_known_as && actor.also_known_as.length > 0 ?<h2>Персональная информация</h2> : null}
+              {actor.birthday ||
+              actor.place_of_birth ||
+              actor.place_of_birth ||
+              (actor.also_known_as && actor.also_known_as.length > 0) ? (
+                <h2>Персональная информация</h2>
+              ) : null}
               <h3>{actor.birthday ? "Дата рождения:" : null}</h3>
               <p>{actor.birthday}</p>
               <h3>{actor.place_of_birth ? "Место рождения:" : null}</h3>

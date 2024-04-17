@@ -28,7 +28,7 @@ const Actors = ({ actorsId }) => {
     <div id="actors">
       <div className="container">
         <div className="actors">
-          {actors.map((el) => (
+          {actors?.map((el) => (
             <div className="actors--text">
               <Link to={`/actorsDetails/${el.id}`}>
                 <img
