@@ -1,15 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { API_KEY } from "../../API";
 import fonFoto from "../../assets/img/fonn.jpg";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../../context";
 
 const MovieActor = ({ actorId }) => {
   const [actors, setActors] = useState([]);
+  const {language} = useContext(LanguageContext)
 
   const getActors = (key) => {
     axios(
-      `https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${key}&language=en-US`
+      `https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${key}&language=${language}`
     ).then((res) => {
       setActors(res.data.cast);
     });
@@ -17,7 +19,7 @@ const MovieActor = ({ actorId }) => {
 
   useEffect(() => {
     getActors(API_KEY);
-  }, []);
+  }, [language]);
   console.log(actors);
 
   return (

@@ -1,18 +1,20 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MovieCard from "../MovieCard";
 import load from "../../assets/img/load.svg";
 import { API_KEY } from "../../API";
+import { LanguageContext } from "../../context";
 
 const Popular = () => {
   const [popular, setPopular] = useState([]);
   const [count, setCount] = useState(1);
+  const {language} = useContext(LanguageContext)
 
   const getPopular = (key) => {
     setPopular([]);
     setTimeout(() => {
       axios(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=${count}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=${language}&page=${count}`
       )
         .then((res) => {
           console.log(res.data.results);
@@ -24,7 +26,7 @@ const Popular = () => {
 
   useEffect(() => {
     getPopular(API_KEY);
-  }, [count]);
+  }, [count, language]);
 
   return (
     <div id="popular">

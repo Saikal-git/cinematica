@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { API_KEY } from "../../API";
 import userImg from "../../assets/img/user.png";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../../context";
 
 const Actors = ({ actorsId }) => {
   const [actors, setActors] = useState([]);
+  const {language} = useContext(LanguageContext)
   const getActor = (key) => {
     axios(
-      `https://api.themoviedb.org/3/movie/${actorsId}/credits?api_key=${key}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${actorsId}/credits?api_key=${key}&language=${language}`
     )
       .then((res) => {
-        console.log(res.data.cast);
         setActors(res.data.cast);
       })
       .catch((res) => {
@@ -21,15 +22,15 @@ const Actors = ({ actorsId }) => {
 
   useEffect(() => {
     getActor(API_KEY);
-  }, []);
-  console.log(actors);
+  }, [language]);
+  // console.log(actors);
 
   return (
     <div id="actors">
       <div className="container">
         <div className="actors">
-          {actors?.map((el) => (
-            <div className="actors--text">
+          {actors?.map((el, idx) => (
+            <div className="actors--text" key={idx}>
               <Link to={`/actorsDetails/${el.id}`}>
                 <img
                   src={

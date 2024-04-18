@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY } from "../../API";
 import { TiThMenu } from "react-icons/ti";
@@ -8,27 +8,31 @@ import { FaBookmark } from "react-icons/fa";
 import Actors from "../../components/Actors";
 import Videos from "../../components/Videos";
 import fonFoto from "../../assets/img/fonn.jpg";
+import { LanguageContext } from "../../context";
 
 const MovieDetails = () => {
+  const { language, favorite, setFavorite } = useContext(LanguageContext);
   const [details, setDetails] = useState({});
   const [modal, setModal] = useState(false);
   const [link1, setLink1] = useState(false);
   const [link2, setLink2] = useState(false);
   const [link3, setLink3] = useState(false);
   let { movieId } = useParams();
-  console.log(movieId);
   const getDetails = (key) => {
     axios(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&language=${language}`
     ).then((res) => {
-      console.log(res.data);
       setDetails(res.data);
     });
   };
-  console.log(details);
+
+  const addToFavorite = (data) => {
+    setFavorite([data, ...favorite]);
+  };
+
   useEffect(() => {
     getDetails(API_KEY);
-  }, []);
+  }, [language]);
 
   let {
     title,
@@ -108,7 +112,7 @@ const MovieDetails = () => {
                   }}
                 >
                   <a>
-                    <FaHeart />
+                    <FaHeart onClick={() => addToFavorite(details)} />
                   </a>
                 </div>
                 <div

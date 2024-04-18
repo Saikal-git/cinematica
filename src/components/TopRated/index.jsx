@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { API_KEY } from "../../API";
 import MovieCard from "../MovieCard";
 import load from "../../assets/img/load.svg";
+import { LanguageContext } from "../../context";
 
 const TopRated = () => {
   const [topRated, setTopRated] = useState([]);
   const [count, setCount] = useState(1);
+  const {language} = useContext(LanguageContext)
 
   const getTopRated = (key) => {
     setTopRated([]);
     setTimeout(() => {
       axios(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=${count}`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=${language}&page=${count}`
       )
         .then((res) => {
           setTopRated(res.data.results);
@@ -25,7 +27,7 @@ const TopRated = () => {
 
   useEffect(() => {
     getTopRated(API_KEY);
-  }, [count]);
+  }, [count, language]);
 
   return (
     <div id="popular">

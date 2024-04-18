@@ -1,18 +1,20 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY } from "../../API";
 import MovieActor from "../MovieActor";
 import useFoto from "../../assets/img/userFotoUsss.png";
+import { LanguageContext } from "../../context";
 
 const ActorsDetails = () => {
   const [actor, setActor] = useState({});
   const [expanded, setExpanded] = useState(false);
+  const {language} = useContext(LanguageContext)
   let { personId } = useParams();
 
   const getImg = (key) => {
     axios(
-      `https://api.themoviedb.org/3/person/${personId}?api_key=${key}&language=en-US`
+      `https://api.themoviedb.org/3/person/${personId}?api_key=${key}&language=${language}`
     ).then((res) => {
       setActor(res.data);
     });
@@ -20,7 +22,7 @@ const ActorsDetails = () => {
   console.log(actor);
   useEffect(() => {
     getImg(API_KEY);
-  }, []);
+  }, [language]);
   return (
     <>
       <div id="actorDetails">
