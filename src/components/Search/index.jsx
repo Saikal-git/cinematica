@@ -24,8 +24,8 @@ const Search = () => {
     <div id="popular">
       <div className="container">
         <div className="popular--movie">
-          {search?.map((el) => (
-            <MovieCard movie={el} />
+          {search?.map((el, idx) => (
+            <MovieCard movie={el} key={idx}/>
           ))}
         </div>
       </div>

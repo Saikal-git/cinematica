@@ -26,8 +26,8 @@ const MovieActor = ({ actorId }) => {
     <div id="actorsMovie">
       <div className="actorsMovie">
         
-        {actors.map((el) => (
-          <div className="actorsMovie--img">
+        {actors?.map((el, idx) => (
+          <div className="actorsMovie--img" key={idx}>
            <Link to={`/movieDetails/${el.id}`}>
            <img
               src={

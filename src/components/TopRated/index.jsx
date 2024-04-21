@@ -39,7 +39,7 @@ const TopRated = () => {
         ) : (
           <div className="popular">
             <div className="popular--movie">
-              {topRated.map((el, idx) => (
+              {topRated?.map((el, idx) => (
                 <MovieCard movie={el} key={idx} />
               ))}
             </div>

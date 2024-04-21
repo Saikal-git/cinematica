@@ -18,16 +18,15 @@ const MovieDetails = () => {
   const [link2, setLink2] = useState(false);
   const [link3, setLink3] = useState(false);
   let { movieId } = useParams();
+  const addToFavorite = () => {
+    setFavorite([...favorite, details]);
+  };
   const getDetails = (key) => {
     axios(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&language=${language}`
     ).then((res) => {
       setDetails(res.data);
     });
-  };
-
-  const addToFavorite = (data) => {
-    setFavorite([data, ...favorite]);
   };
 
   useEffect(() => {
