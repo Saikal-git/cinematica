@@ -5,11 +5,16 @@ import MovieCard from "../MovieCard";
 const Favorite = () => {
   const { favorite } = useContext(LanguageContext);
   console.log(favorite);
+
   return (
-    <div className="popular">
+    <div id="popular">
       <div className="container">
         <div className="popular--movie">
-          {favorite?.map((el) => <MovieCard movie={el}/>)}
+          {favorite.length ? (
+            favorite?.map((el) => <MovieCard movie={el} />)
+          ) : (
+            <h1>у вас еще нет избранных фильмов</h1>
+          )}
         </div>
       </div>
     </div>

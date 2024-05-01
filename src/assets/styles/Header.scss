@@ -54,7 +54,17 @@
     }
     a {
       color: white;
-      font-size: 25px;
+      font-size: 23px;
+    }
+    h5 {
+      padding: 0px 6px 2px 6px;
+      background: red;
+      border-radius: 50%;
+      font-size: 12px;
+      color: white;
+      position: absolute;
+      right: 52px;
+      top: 27px;
     }
   }
 }

@@ -29,8 +29,8 @@ const Home = () => {
       id="home"
       style={{
         background: `url(https://media.themoviedb.org/t/p/w440_and_h660_face${randomBag} ) no-repeat center/cover`,
-        
-        height: "90vh",
+
+        height: "85vh",
       }}
     >
       <div className="container">
@@ -41,6 +41,7 @@ const Home = () => {
           <button>Поиск</button>
         </div>
       </div>
+      <div className="blue"></div>
     </section>
   );
 };

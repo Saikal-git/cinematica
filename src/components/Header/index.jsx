@@ -2,14 +2,14 @@ import React, { useContext, useState } from "react";
 import logo from "../../assets/img/logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CgDarkMode } from "react-icons/cg";
-import { GoStarFill } from "react-icons/go";
+import { FaHeart } from "react-icons/fa";
 import { LanguageContext } from "../../context";
 
 const Header = () => {
   const [inputValue, setInputValue] = useState("");
-  const { isDark, setIsDark, language, setLanguage } =
+  const { isDark, setIsDark, language, setLanguage, favorite } =
     useContext(LanguageContext);
-    const nav = useNavigate()
+  const nav = useNavigate();
   return (
     <div id="header">
       <div className="container">
@@ -37,12 +37,13 @@ const Header = () => {
             />
             <button onClick={() => nav(`/search/${inputValue}`)}>search</button>
           </div>
-          <Link to={'/favorite'}>
-            <GoStarFill />
-          </Link>
           <a onClick={() => setIsDark(!isDark)}>
             <CgDarkMode />
           </a>
+          <a onClick={() => nav("/favorite")}>
+            <FaHeart />
+          </a>
+          {favorite.length ? <h5>{favorite.length}</h5> : null}
         </div>
       </div>
     </div>

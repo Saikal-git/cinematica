@@ -15,11 +15,19 @@ const MovieDetails = () => {
   const [details, setDetails] = useState({});
   const [modal, setModal] = useState(false);
   const [link1, setLink1] = useState(false);
-  const [link2, setLink2] = useState(false);
   const [link3, setLink3] = useState(false);
+  const someFavorite = favorite.some((el) => el.id === details.id);
+
   let { movieId } = useParams();
   const addToFavorite = () => {
-    setFavorite([...favorite, details]);
+    let findFavorite = favorite.find((el) => el.id === details.id);
+    if (findFavorite) {
+      let filterFavorite = favorite.filter((el) => el.id !== details.id);
+      setFavorite(filterFavorite);
+    } else {
+      localStorage.setItem("favorite", JSON.stringify([...favorite, details]));
+      setFavorite([...favorite, details]);
+    }
   };
   const getDetails = (key) => {
     axios(
@@ -89,7 +97,6 @@ const MovieDetails = () => {
                 <div
                   onClick={() => {
                     setLink1(!link1);
-                    setLink2(false);
                     setLink3(false);
                   }}
                   style={{
@@ -102,23 +109,20 @@ const MovieDetails = () => {
                 </div>
                 <div
                   onClick={() => {
-                    setLink2(!link2);
-                    setLink1(false);
-                    setLink3(false);
+                    addToFavorite(details);
                   }}
                   style={{
-                    color: link2 ? "red" : "white",
+                    color: someFavorite ? "red" : "white",
                   }}
                 >
                   <a>
-                    <FaHeart onClick={() => addToFavorite(details)} />
+                    <FaHeart />
                   </a>
                 </div>
                 <div
                   onClick={() => {
                     setLink3(!link3);
                     setLink1(false);
-                    setLink2(false);
                   }}
                   style={{
                     color: link3 ? "yellow" : "white",
